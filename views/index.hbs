@@ -1,0 +1,14 @@
+<h1>Workout Planner</h1>
+{{#each this}}
+	<div>
+		<h1>{{name}}</h1>
+
+		{{#each exercises}}
+			<p><strong>Name:</strong>{{name}} {{#if isCardio}}Cardio{{else}}Strength{{/if}} ({{_id}})</p>
+			<p><strong>Reps:</strong>{{reps}}</p>
+			<p><strong>Sets:</strong>{{sets}}</p>
+			<p><strong>Weight:</strong>{{weight}}</p>
+			<p><strong>Duration:</strong>{{duration}}</p>
+		{{/each}}
+	</div>
+{{/each}}
