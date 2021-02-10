@@ -1,11 +1,14 @@
 # U17 Workout Tracker
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![last-commit](https://img.shields.io/github/last-commit/skelliebunnie/uw-u17-workout-tracker)]
-[![languages-count](https://img.shields.io/github/languages/count/skelliebunnie/uw-u17-workout-tracker)]
-[![github/languages/top](https://img.shields.io/github/languages/top/skelliebunnie/uw-u17-workout-tracker)]
+![last-commit](https://img.shields.io/github/last-commit/skelliebunnie/uw-u17-workout-tracker)
+![languages-count](https://img.shields.io/github/languages/count/skelliebunnie/uw-u17-workout-tracker)
+![github/languages/top](https://img.shields.io/github/languages/top/skelliebunnie/uw-u17-workout-tracker)
 
 ## Description
 Users can create exercises and workouts, and assign exercises to workouts to keep a record of their workout plans. A workout can be set to 'active' (essentially the "current" workout). Any plan can be activated, replacing the currently active workout (if there is one). Deactivating the current workout plan does not auto-activate another and a notice informs the user they can create a new workout or activate one from the list of previous workouts.
+
+## Deployment
+![Live on Heroku](https://limitless-garden-07343.herokuapp.com/)
 
 ## Table of Contents
 * [Installation](#Installation)
