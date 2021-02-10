@@ -26,11 +26,10 @@ var hbsHelpers = exphbs.create({
 app.engine("hbs", hbsHelpers.engine);
 app.set("view engine", "hbs");
 
-
 // Mongoose connection
 const db = require('./models');
 
-mongoose.connect(process.envMNGODB_URI || "mongodb://localhost/workoutplanner", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutplanner", {
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useUnifiedTopology: true
@@ -45,6 +44,135 @@ function mongooseToObj(arr) {
 
 	return tempArray;
 }
+
+const seedExercises = [
+	{
+		name: 'bicep curls',
+		reps: 8,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 10
+	},
+	{
+		name: 'overhead tricep presses',
+		reps: 8,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 10
+	},
+	{
+		name: 'I-lifts',
+		reps: 8,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 10
+	},
+	{
+		name: 'lunges',
+		reps: 12,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'squats',
+		reps: 12,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'leg lifts, front',
+		reps: 12,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'leg lifts, back',
+		reps: 12,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'leg lifts, side',
+		reps: 12,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'crunches',
+		reps: 16,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'oblique crunches',
+		reps: 16,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'crazy ivans',
+		reps: 16,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'butterflies',
+		reps: 16,
+		sets: 3,
+		duration: 0,
+		isCardio: false,
+		distance: 0,
+		weight: 0
+	},
+	{
+		name: 'jogging',
+		reps: 0,
+		sets: 0,
+		duration: 30,
+		isCardio: true,
+		distance: .5,
+		weight: 0
+	},
+	{
+		name: 'walking',
+		reps: 0,
+		sets: 0,
+		duration: 60,
+		isCardio: true,
+		distance: 1,
+		weight: 0
+	}
+];
 
 // sample get route
 app.get('/', function(req, res) {
@@ -79,6 +207,52 @@ app.get('/', function(req, res) {
 	}).catch(err => {
 		console.log(err);
 		res.send(err);
+	})
+});
+
+app.get('/seed', (req, res) => {
+	db.Exercise.create(seedExercises)
+	.then(result => {
+		db.Workout.create([
+			{
+				name: 'Workout 1',
+				exercises: [
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id
+				]
+			},
+			{
+				name: 'Workout 2',
+				exercises: [
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id
+				]
+			},
+			{
+				name: 'Workout 3',
+				exercises: [
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id,
+					result[Math.floor(Math.random() * result.length)]._id
+				]
+			},
+			{
+				name: 'Workout 4',
+				exercises: [
+					result[Math.floor(Math.random() * result.length)]._id
+				]
+			}
+		]).then(fullRes => {
+			res.json(fullRes);
+		}).catch(err => {
+			console.error(err);
+			res.json(err);
+		})
+	}).catch(err => {
+		console.error(err);
+		res.json(err);
 	})
 });
 
