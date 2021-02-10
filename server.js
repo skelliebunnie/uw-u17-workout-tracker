@@ -17,20 +17,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static('public'));
 
-// create handlebars engine
-var handlebars = exphbs.create({
-  layoutsDir: path.join(__dirname, 'views/layouts'),
-  // partialsDir: path.join(__dirname, 'views/partials'),
+var hbsHelpers = exphbs.create({
+  helpers: require('./config/hbs-helpers.js').helpers,
   defaultLayout: 'main',
-  extname: 'hbs',
-  // helpers: require('./config/handlebars-helpers')
+  extname: 'hbs'
 });
 
-// Set Handlebars as the default templating engine
-// using the engine created above
-app.engine("hbs", handlebars.engine);
+app.engine("hbs", hbsHelpers.engine);
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
 
 
 // Mongoose connection
@@ -40,16 +34,47 @@ mongoose.connect(process.envMNGODB_URI || "mongodb://localhost/workoutplanner", 
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useUnifiedTopology: true
-})
+});
+
+// https://dev.to/abourass/how-to-solve-the-own-property-issue-in-handlebars-with-mongoose-2l7c
+function mongooseToObj(arr) {
+	let tempArray = [];
+	if(arr.length !== 0) {
+		arr.forEach( doc => tempArray.push( doc.toObject() ) );
+	}
+
+	return tempArray;
+}
 
 // sample get route
 app.get('/', function(req, res) {
-	db.Workout.find()
-	.populate('exercises')
-	.then( data => {
-		data = JSON.stringify(data);
 
-		res.render('index', JSON.parse(data));
+	db.Workout.find()
+	.populate({
+		path: 'exercises',
+		model: 'Exercise',
+		// populate: {
+		// 	path: 'exercises',
+		// 	model: 'Exercise'
+		// }
+	})
+	.then( workoutData => {
+		const workouts = mongooseToObj(workoutData);
+
+		db.Exercise.find()
+		.then( exerciseData => {
+			const exercises = mongooseToObj(exerciseData);
+
+			let activeWorkout;
+			for(var i in workouts) {
+				if(workouts[i].isActive) {
+					activeWorkout = workouts[i];
+				}
+			}
+
+			res.render('index', { workouts: workouts, exercises: exercises, activeWorkout: activeWorkout });
+
+		});
 
 	}).catch(err => {
 		console.log(err);
@@ -62,8 +87,10 @@ app.get('/api/exercises', function(req, res) {
 		
 		if(err) {
 			console.log(err);
+
 		} else {
 			res.json(data);
+
 		}
 	});
 });
@@ -77,8 +104,32 @@ app.post('/api/exercises', function(req, res) {
 	});
 });
 
+app.put('/api/exercises/:id', function(req, res) {
+	let id = req.params.id;
+
+	db.Exercise.findByIdAndUpdate(id, req.body, (err, data) => {
+		if(err) {
+			console.log(chalk.bgRed(` ${err} `));
+		} else {
+			res.json(data);
+		}
+	});
+
+});
+
+app.delete('/api/exercises/:id', function(req, res) {
+	db.Exercise.deleteOne({ _id: req.params.id }).then(data => {
+		res.json(data);
+	}).catch(err => {
+		console.log(err);
+		res.send(err);
+	});
+});
+
 app.get('/api/workouts', function(req, res) {
-	db.Workout.find().then(data => {
+	db.Workout.find()
+	.populate('exercises')
+	.then(data => {
 		res.json(data);
 	}).catch(err => {
 		console.log(err);
@@ -95,8 +146,22 @@ app.post('/api/workouts', function(req, res) {
 	});
 });
 
-app.get('/api/schedule', function(req, res) {
-	db.Day.find().then(data => {
+app.put('/api/workouts/:id', function(req, res) {
+	let id = req.params.id;
+	console.log(req.params.id, req.body);
+
+	db.Workout.findByIdAndUpdate(id, req.body, (err, data) => {
+		if(err) {
+			console.log(chalk.bgRed(` ${err} `));
+		} else {
+			res.json(data);
+		}
+	});
+
+});
+
+app.delete('/api/workouts/:id', function(req, res) {
+	db.Workout.deleteOne({ _id: req.params.id }).then(data => {
 		res.json(data);
 	}).catch(err => {
 		console.log(err);
@@ -104,14 +169,34 @@ app.get('/api/schedule', function(req, res) {
 	});
 });
 
-app.post('/api/schedule', function(req, res) {
-	db.Day.create(req.body).then(data => {
-		res.json(data);
-	}).catch(err => {
-		console.log(err);
-		res.send(err);
-	});
-});
+// app.get('/api/schedule', function(req, res) {
+// 	db.Day.find()
+// 	.populate({
+// 		path: 'workouts',
+// 		model: 'Workout',
+// 		populate: {
+// 			path: 'exercises',
+// 			model: 'Exercise'
+// 		}
+// 	})
+// 	.then(data => {
+// 		res.json(data);
+
+// 	}).catch(err => {
+// 		console.log(err);
+// 		res.send(err);
+
+// 	});
+// });
+
+// app.post('/api/schedule', function(req, res) {
+// 	db.Day.create(req.body).then(data => {
+// 		res.json(data);
+// 	}).catch(err => {
+// 		console.log(err);
+// 		res.send(err);
+// 	});
+// });
 
 app.listen(PORT, function() {
   // Log (server-side) when our server has started

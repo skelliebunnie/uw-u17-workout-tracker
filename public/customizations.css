@@ -1,0 +1,257 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+i {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: white;
+  vertical-align: middle;
+}
+h1.margin-xs-top, h2.margin-xs-top, h3.margin-xs-top, h4.margin-xs-top, h5.margin-xs-top, h6.margin-xs-top,
+.h1.margin-xs-top, .h2.margin-xs-top, .h3.margin-xs-top, .h4.margin-xs-top, .h5.margin-xs-top, .h6.margin-xs-top {
+  margin-top: 0.45rem;
+}
+h1.margin-sm-top, h2.margin-sm-top, h3.margin-sm-top, h4.margin-sm-top, h5.margin-sm-top, h6.margin-sm-top,
+.h1.margin-sm-top, .h2.margin-sm-top, .h3.margin-sm-top, .h4.margin-sm-top, .h5.margin-sm-top, .h6.margin-sm-top {
+  margin-top: 0.6rem;
+}
+h1.margin-md-top, h2.margin-md-top, h3.margin-md-top, h4.margin-md-top, h5.margin-md-top, h6.margin-md-top,
+.h1.margin-md-top, .h2.margin-md-top, .h3.margin-md-top, .h4.margin-md-top, .h5.margin-md-top, .h6.margin-md-top {
+  margin-top: 0.75rem;
+}
+h1.margin-lg-top, h2.margin-lg-top, h3.margin-lg-top, h4.margin-lg-top, h5.margin-lg-top, h6.margin-lg-top,
+.h1.margin-lg-top, .h2.margin-lg-top, .h3.margin-lg-top, .h4.margin-lg-top, .h5.margin-lg-top, .h6.margin-lg-top {
+  margin-top: 1.125rem;
+}
+h1.no-border, h2.no-border, h3.no-border, h4.no-border, h5.no-border, h6.no-border,
+.h1.no-border, .h2.no-border, .h3.no-border, .h4.no-border, .h5.no-border, .h6.no-border {
+  border: 0;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.fa-sm {
+  font-size: 0.85rem;
+}
+
+.col.container {
+  padding: 0;
+}
+
+.bg-primary-analogous3-400:hover,
+.bg-primary-analogous3-400:focus {
+  background-color: #f9c778;
+}
+
+.card {
+  background-color: transparent;
+  border: 1px solid #EFEFEF;
+}
+.card-title {
+  text-align: center;
+  width: 100%;
+}
+.card-content {
+  width: 100%;
+}
+
+.item-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 1.5rem;
+}
+.item-list .item {
+  line-height: 1.5rem;
+  padding: 0 0 1rem;
+  border: 1px solid #EFEFEF;
+}
+.item-list .item .title {
+  border: 0;
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  padding: 0.2rem 0.2rem 0.4rem 0.5rem;
+}
+.item-list .item > span {
+  padding: 0.2rem 0.4rem 0.2rem 1.5rem;
+}
+
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.float-left.margin-bottom, .float-right.margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.clear {
+  clear: both;
+}
+
+.flex {
+  display: flex !important;
+  justify-content: center;
+  align-items: stretch;
+}
+.flex > * {
+  flex: 1 0 auto;
+}
+.flex .flex-0 {
+  flex: 0;
+}
+.flex-row {
+  flex-flow: row wrap;
+}
+.flex-column {
+  flex-flow: column wrap;
+}
+.flex-align-end {
+  align-items: flex-end;
+}
+.flex-justify-space-between {
+  justify-content: space-between;
+}
+.flex-justify-end {
+  justify-content: flex-end;
+}
+.flex-justify-space-around {
+  justify-content: space-around;
+}
+
+.align-self-end {
+  align-self: flex-end;
+}
+
+.edit {
+  cursor: pointer;
+}
+.edit:hover, .edit:focus {
+  color: yellow;
+  text-shadow: 1px 1px 5px black;
+}
+
+.delete {
+  cursor: pointer;
+}
+.delete:hover, .delete:focus {
+  color: #ED6A5A;
+  text-shadow: 1px 1px 1px white;
+}
+
+.text-black {
+  color: black !important;
+}
+.text-white {
+  color: white !important;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.btn {
+  margin-bottom: 0.2rem;
+}
+.btn-small {
+  padding: 0.2rem 0.4rem;
+}
+.btn.no-border {
+  border: 0;
+}
+.btn:hover, .btn:focus {
+  cursor: pointer;
+}
+
+.form {
+  text-align: left;
+}
+.form .field-group {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+  padding: 0.5rem;
+}
+.form [type=checkbox] {
+  height: 1rem;
+  width: 1rem;
+  background-color: white;
+}
+
+.form .add-exercises {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: left;
+}
+.form .add-exercises .field-group {
+  display: flex;
+  flex-flow: row wrap;
+}
+.form .add-exercises label {
+  margin: 0.5rem 0.2rem;
+  display: inline-block;
+  position: relative;
+  bottom: 0.25rem;
+}
+
+.modal {
+  display: none;
+}
+
+.modal-visible {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  position: relative;
+  display: block;
+  max-width: 70%;
+  background-color: white;
+  color: black;
+  border-radius: 0.2rem;
+  text-align: center;
+  padding: 1.75rem 1rem 2rem;
+}
+.modal-body h1 {
+  margin-bottom: 1rem;
+}
+.modal-body .close-button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/*# sourceMappingURL=customizations.css.map */

@@ -1,14 +1,58 @@
-<h1>Workout Planner</h1>
-{{#each this}}
-	<div>
-		<h1>{{name}}</h1>
+{{>header }}
 
-		{{#each exercises}}
-			<p><strong>Name:</strong>{{name}} {{#if isCardio}}Cardio{{else}}Strength{{/if}} ({{_id}})</p>
-			<p><strong>Reps:</strong>{{reps}}</p>
-			<p><strong>Sets:</strong>{{sets}}</p>
-			<p><strong>Weight:</strong>{{weight}}</p>
-			<p><strong>Duration:</strong>{{duration}}</p>
-		{{/each}}
+{{>create }}
+
+<div class="row">
+	<div class="col col-10 text-center">
+		<p class="h2 bg-primary-analogous2-400">Other Workouts</p>
 	</div>
+</div>
+
+<div class="row">
+{{#each workouts}}
+	{{#unless isActive}}
+	<article class="col col-lg-3 container">
+		<div class="card" data-workoutId="{{_id}}" data-name="{{name}}">
+			<section class="card-title flex flex-row bg-tertiary-500">
+				<p class="flex-0 pad-xs-top"><a class="btn btn-small btn-success text-white" data-action="activate" data-type="workout" data-target="{{_id}}">Select</a></p>
+				<p class="h3 no-border pad-xs-bottom margin-xs-top text-center text-capitalize text-black">{{name}}</p>
+				<p class="mod-buttons text-right pad-md-top">
+					<i class="fas fa-pencil edit" data-action="edit" data-type="workout" data-target="{{_id}}"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt delete" data-action="delete" data-type="workout" data-target="{{_id}}"></i>
+				</p>
+			</section>
+			<section class="card-content column workouts pad-xl-x">
+				<ul class="item-list">
+					{{#each exercises}}
+						<li class="item margin-md-bottom" data-workoutId="{{../_id}}" data-exerciseId="{{_id}}" data-name="{{name}}" data-reps="{{reps}}" data-sets="{{sets}}" data-duration="{{duration}}" data-distance="{{distance}}" data-weight="{{weight}}" data-isCardio="{{isCardio}}"> 
+							<div class='title name pointer flex flex-row flex-justify-space-between bg-tertiary-200 margin-xs-top'><span class="edit strong" data-action="edit" data-type="exercise" data-target="{{_id}}"><i class="fas fa-pencil fa-sm"></i> {{name}}</span> <i class="fas fa-times delete text-right margin-lg-right margin-xs-top" data-action="delete" data-type="exercise" data-target="{{_id}}"></i>	</div>
+							
+							{{#if reps}}
+								<span class="reps"><strong>Reps:</strong> {{reps}}</span>
+							{{/if}}
+
+							{{#if sets}}
+								<span class="sets"><strong>Sets:</strong> {{sets}}</span>
+							{{/if}}
+
+							{{#if weight}}
+								<span class="weight"><strong>Weight:</strong> {{weight}} lbs.</span>
+							{{/if}}
+
+							{{#if duration}}
+								<span class="duration"><strong>Duration:</strong> {{duration}} min.</span>
+							{{/if}}
+
+							{{#if distance}}
+								<span class="distance"><strong>Distance:</strong> {{distance}} mile</span>
+							{{/if}}
+						</li>
+					{{/each}}
+				</ul>
+			</section>
+		</div>
+	</article>
+	{{/unless}}
 {{/each}}
+</div>
+
+{{>modal-delete-item }}

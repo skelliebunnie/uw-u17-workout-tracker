@@ -10,6 +10,13 @@ const DaySchema = new Schema({
 			ref: 'Workout'
 		}
 	]
+}, {
+	toObject: {
+		virtuals: true
+	},
+	toJSON: {
+		virtuals: true
+	}
 });
 
 const Day = mongoose.model("Day", DaySchema);

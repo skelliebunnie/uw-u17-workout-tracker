@@ -7,8 +7,16 @@ const ExerciseSchema = new Schema({
 	reps: Number,
 	sets: Number,
 	duration: Number, // in minutes
-	isCardio: Boolean,
+	isCardio: Boolean, // instead of 'type'
+	distance: Number, // for cardio
 	weight: Number // in pounds
+}, {
+	toObject: {
+		virtuals: true
+	},
+	toJSON: {
+		virtuals: true
+	}
 });
 
 const Exercise = mongoose.model("Exercise", ExerciseSchema);

@@ -1,0 +1,102 @@
+<article class="row justify-space-around">
+	<section class="col col-4">
+		<form class="form flex flex-column text-center">
+			<p id="formTitle" class="h2 bg-primary-analogous3-400 text-center">Create New</p>
+			<input type="hidden" id="targetId">
+			<div class="field-group">
+				<label for="createExercise"><input id="createExercise" type="radio" name="create" data-target="createExerciseInputs" checked> Exercise</label>
+				<label for="createWorkout"><input id="createWorkout" type="radio" name="create" data-target="createWorkoutInputs"> Workout</label>
+			</div>
+			<div id="createExerciseInputs" class="toggle-field">
+				<div class="field-group">
+					<label for="exerciseName">Name</label>
+					<input type="text" id="exerciseName" placeholder="bicep curl">
+				</div>
+				<div class="field-group">
+					<label for="isCardio" class='checkbox-label'>Cardio?</label><input type="checkbox" id="isCardio">
+				</div>
+				<div class="isCardio field-group hidden">
+					<label for="exerciseDuration">Duration</label>
+					<input type="number" id="exerciseDuration" placeholder="0">
+				</div>
+				<div class="isCardio field-group hidden">
+					<label for="exerciseDistance">Distance</label>
+					<input type="number" id="exerciseDistance" placeholder="0">
+				</div>
+				<div class="isNotCardio field-group">
+					<label for="exerciseReps">Reps</label>
+					<input type="number" id="exerciseReps" placeholder="10">
+				</div>
+				<div class="isNotCardio field-group">
+					<label for="exerciseSets">Sets</label>
+					<input type="number" id="exerciseSets" placeholder="3">
+				</div>
+				<div class="isNotCardio field-group">
+					<label for="exerciseWeight">Weight</label>
+					<input type="number" id="exerciseWeight" placeholder="10">
+				</div>
+			</div>
+			<div id="createWorkoutInputs" class="hidden toggle-field">
+				<div class="field-group">
+					<label for="workoutName">Name</label>
+					<input type="text" id="workoutName" placeholder="upper body">
+				</div>
+				<h4 class="text-center margin-lg-top border-bottom-accent-400">Add Exercises</h4>
+				<div class="add-exercises">
+					{{#each exercises}}
+						<div class="field-group">
+							<input type="checkbox" class="workoutExercises" value="{{_id}}">&nbsp;&nbsp;<label class='checkbox-label'>{{name}}</label>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+			<input type="submit" class="btn btn-success no-border" id="create" value="Create">
+			<input type="submit" class="btn btn-info no-border hidden" id="update" value="Update">
+		</form>
+	</section>
+	<section class="col col-4">
+		{{#if activeWorkout}}
+		<p class="h2 bg-primary-analogous3-400" style="margin-top: 2rem;">Current Workout</p>
+		<div class="card" data-workoutId="{{activeWorkout._id}}" data-name="{{activeWorkout.name}}">
+			<section class="card-title flex flex-row bg-accent-400">
+				<p class="flex-0 pad-xs-top"><a class="btn btn-small btn-warn" data-action="deactivate" data-type="workout" data-target="{{activeWorkout._id}}">Deactivate</a></p>
+				<p class="h3 no-border pad-xs-bottom margin-xs-top text-center text-capitalize">{{activeWorkout.name}}</p>
+				<p class="mod-buttons text-right pad-md-top">
+					<i class="fas fa-pencil edit" data-action="edit" data-type="workout" data-target="{{activeWorkout._id}}"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-trash-alt delete" data-action="delete" data-type="workout" data-target="{{activeWorkout._id}}"></i>
+				</p>
+			</section>
+			<section class="card-content column workouts pad-xl-x">
+				<ul class="item-list">
+					{{#each activeWorkout.exercises}}
+						<li class="item margin-md-bottom" data-workoutId="{{../_id}}" data-exerciseId="{{_id}}" data-name="{{name}}" data-reps="{{reps}}" data-sets="{{sets}}" data-duration="{{duration}}" data-distance="{{distance}}" data-weight="{{weight}}" data-isCardio="{{isCardio}}"> 
+							<div class='title name pointer flex flex-row flex-justify-space-between bg-accent-100 margin-xs-top'><span class="edit strong" data-action="edit" data-type="exercise" data-target="{{_id}}"><i class="fas fa-pencil fa-sm"></i> {{name}}</span> <i class="fas fa-times delete text-right margin-lg-right margin-xs-top" data-action="delete" data-type="exercise" data-target="{{_id}}"></i>	</div>
+							
+							{{#if reps}}
+								<span class="reps"><strong>Reps:</strong> {{reps}}</span>
+							{{/if}}
+
+							{{#if sets}}
+								<span class="sets"><strong>Sets:</strong> {{sets}}</span>
+							{{/if}}
+
+							{{#if weight}}
+								<span class="weight"><strong>Weight:</strong> {{weight}} lbs.</span>
+							{{/if}}
+
+							{{#if duration}}
+								<span class="duration"><strong>Duration:</strong> {{duration}} min.</span>
+							{{/if}}
+
+							{{#if distance}}
+								<span class="distance"><strong>Distance:</strong> {{distance}} mile</span>
+							{{/if}}
+						</li>
+					{{/each}}
+				</ul>
+			</section>
+		</div>
+		{{else}}
+		<h3 class="text-center" style="margin-top: 2rem;">No Active Workout! <br>Please select one below or create a new one.</h3>
+		{{/if}}
+	</section>
+</article>

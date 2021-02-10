@@ -3850,7 +3850,7 @@ nav {
 	        box-sizing: border-box;
 	max-width: 100%;
 	text-align: center;
-	background: url("../images/succulents.jpg");
+	/*background: url("../images/succulents.jpg");*/
 	background-size: cover;
 	background-position: top;
 	position: relative;
@@ -3934,13 +3934,22 @@ nav {
 	display: grid;
 	grid-template-rows: repeat(auto-fill, -webkit-min-content);
 	grid-template-rows: repeat(auto-fill, min-content);
-	grid-template-areas: "site-header" "site-nav" "site-content" "site-sidebar" "site-footer"; }
+	grid-template-areas: "site-header"
+ "site-nav"
+ "site-content"
+ "site-sidebar"
+ "site-footer"; }
 	#page-container.site-nav-none {
-		grid-template-areas: "site-header" "site-content" "site-sidebar" "site-footer"; }
+		grid-template-areas: "site-header"
+ "site-content"
+ "site-sidebar"
+ "site-footer"; }
 		#page-container.site-nav-none .site-header + .site-nav {
 			display: none; }
 	#page-container.sidebar-none {
-		grid-template-areas: "site-header" "site-content" "site-footer"; }
+		grid-template-areas: "site-header"
+ "site-content"
+ "site-footer"; }
 		#page-container.sidebar-none.site-sidebar {
 			display: none; }
 
@@ -3953,63 +3962,123 @@ nav {
 		grid-template-rows: min-content min-content 1fr min-content;
 		grid-template-columns: minmax(-webkit-min-content, 15%) 1fr;
 		grid-template-columns: minmax(min-content, 15%) 1fr;
-		grid-template-areas: "site-header site-header" "site-sidebar site-nav" "site-sidebar site-content" "site-footer site-footer"; }
+		grid-template-areas: "site-header site-header"
+ "site-sidebar site-nav"
+ "site-sidebar site-content"
+ "site-footer site-footer"; }
 		#page-container.site-nav-none {
 			grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
 			grid-template-rows: min-content 1fr min-content;
-			grid-template-areas: "site-header site-header" "site-sidebar site-content" "site-footer site-footer"; }
+			grid-template-areas: "site-header site-header"
+ "site-sidebar site-content"
+ "site-footer site-footer"; }
 			#page-container.site-nav-none .site-header + .site-nav {
 				display: none; }
 		#page-container.sidebar-none {
 			grid-template-columns: 1fr;
-			grid-template-areas: "site-header" "site-nav" "site-content" "site-footer"; }
+			grid-template-areas: "site-header"
+ "site-nav"
+ "site-content"
+ "site-footer"; }
 			#page-container.sidebar-none .site-sidebar {
 				display: none; }
 		#page-container.site-nav-none.sidebar-none {
-			grid-template-areas: "site-header" "site-content" "site-footer"; }
+			grid-template-areas: "site-header"
+ "site-content"
+ "site-footer"; }
 		#page-container.vertical {
 			grid-template-columns: 1fr;
-			grid-template-areas: "site-header" "site-nav" "site-content" "site-sidebar" "site-footer"; }
+			grid-template-areas: "site-header"
+ "site-nav"
+ "site-content"
+ "site-sidebar"
+ "site-footer"; }
 		#page-container.vertical.site-nav-none {
-			grid-template-areas: "site-header" "site-content" "site-sidebar" "site-footer"; }
+			grid-template-areas: "site-header"
+ "site-content"
+ "site-sidebar"
+ "site-footer"; }
 		#page-container.sidebar-fullheight {
-			grid-template-areas: "site-sidebar site-header" "site-sidebar site-nav" "site-sidebar site-content" "site-sidebar site-footer"; }
+			grid-template-areas: "site-sidebar site-header"
+ "site-sidebar site-nav"
+ "site-sidebar site-content"
+ "site-sidebar site-footer"; }
 			#page-container.sidebar-fullheight.site-nav-none {
-				grid-template-areas: "site-sidebar site-header" "site-sidebar site-content" "site-sidebar site-footer"; }
+				grid-template-areas: "site-sidebar site-header"
+ "site-sidebar site-content"
+ "site-sidebar site-footer"; }
 		#page-container.sidebar-to-header {
-			grid-template-areas: "site-sidebar site-header" "site-sidebar site-nav" "site-sidebar site-content" "site-footer site-footer"; }
+			grid-template-areas: "site-sidebar site-header"
+ "site-sidebar site-nav"
+ "site-sidebar site-content"
+ "site-footer site-footer"; }
 			#page-container.sidebar-to-header.site-nav-none {
-				grid-template-areas: "site-sidebar site-header" "site-sidebar site-content" "site-footer site-footer"; }
+				grid-template-areas: "site-sidebar site-header"
+ "site-sidebar site-content"
+ "site-footer site-footer"; }
 		#page-container.sidebar-to-footer {
-			grid-template-areas: "site-header site-header" "site-sidebar site-nav" "site-sidebar site-content" "site-sidebar site-footer"; }
+			grid-template-areas: "site-header site-header"
+ "site-sidebar site-nav"
+ "site-sidebar site-content"
+ "site-sidebar site-footer"; }
 			#page-container.sidebar-to-footer.site-nav-none {
-				grid-template-areas: "site-header site-header" "site-sidebar site-content" "site-sidebar site-footer"; }
+				grid-template-areas: "site-header site-header"
+ "site-sidebar site-content"
+ "site-sidebar site-footer"; }
 		#page-container.sidebar-nav {
-			grid-template-areas: "site-header site-header" "site-nav site-content" "site-footer site-footer"; }
+			grid-template-areas: "site-header site-header"
+ "site-nav site-content"
+ "site-footer site-footer"; }
 			#page-container.sidebar-nav.sidebar-fullheight {
-				grid-template-areas: "site-nav site-header" "site-nav site-content" "site-nav site-footer"; }
+				grid-template-areas: "site-nav site-header"
+ "site-nav site-content"
+ "site-nav site-footer"; }
 			#page-container.sidebar-nav.to-header {
-				grid-template-areas: "site-nav site-header" "site-nav site-content" "site-footer site-footer"; }
+				grid-template-areas: "site-nav site-header"
+ "site-nav site-content"
+ "site-footer site-footer"; }
 			#page-container.sidebar-nav.to-footer {
-				grid-template-areas: "site-header site-header" "site-nav site-content" "site-nav site-footer"; }
+				grid-template-areas: "site-header site-header"
+ "site-nav site-content"
+ "site-nav site-footer"; }
 			#page-container.sidebar-nav.sidebar-right {
-				grid-template-areas: "site-header site-header" "site-content site-nav" "site-footer site-footer"; }
+				grid-template-areas: "site-header site-header"
+ "site-content site-nav"
+ "site-footer site-footer"; }
 				#page-container.sidebar-nav.sidebar-right.sidebar-fullheight {
-					grid-template-areas: "site-header site-nav" "site-content site-nav" "site-footer site-nav"; }
+					grid-template-areas: "site-header site-nav"
+ "site-content site-nav"
+ "site-footer site-nav"; }
 				#page-container.sidebar-nav.sidebar-right.to-header {
-					grid-template-areas: "site-header site-nav" "site-content site-nav" "site-footer site-footer"; }
+					grid-template-areas: "site-header site-nav"
+ "site-content site-nav"
+ "site-footer site-footer"; }
 				#page-container.sidebar-nav.sidebar-right.to-footer {
-					grid-template-areas: "site-header site-header" "site-content site-nav" "site-footer site-nav"; }
+					grid-template-areas: "site-header site-header"
+ "site-content site-nav"
+ "site-footer site-nav"; }
 		#page-container.sidebar-right {
 			grid-template-columns: 1fr -webkit-min-content;
 			grid-template-columns: 1fr min-content;
-			grid-template-areas: "site-header site-header" "site-nav site-sidebar" "site-content site-sidebar" "site-footer site-footer"; }
+			grid-template-areas: "site-header site-header"
+ "site-nav site-sidebar"
+ "site-content site-sidebar"
+ "site-footer site-footer"; }
 			#page-container.sidebar-right.sidebar-fullheight {
-				grid-template-areas: "site-header site-sidebar" "site-nav site-sidebar" "site-content site-sidebar" "site-footer site-sidebar"; }
+				grid-template-areas: "site-header site-sidebar"
+ "site-nav site-sidebar"
+ "site-content site-sidebar"
+ "site-footer site-sidebar"; }
 			#page-container.sidebar-right.to-header {
-				grid-template-areas: "site-header site-sidebar" "site-nav site-sidebar" "site-content site-sidebar" "site-footer site-footer"; }
+				grid-template-areas: "site-header site-sidebar"
+ "site-nav site-sidebar"
+ "site-content site-sidebar"
+ "site-footer site-footer"; }
 			#page-container.sidebar-right.to-footer {
-				grid-template-areas: "site-header site-header" "site-nav site-sidebar" "site-content site-sidebar" "site-footer site-sidebar"; } }
+				grid-template-areas: "site-header site-header"
+ "site-nav site-sidebar"
+ "site-content site-sidebar"
+ "site-footer site-sidebar"; } }
 
 @media (min-width: 80em) {
 	#page-container {
